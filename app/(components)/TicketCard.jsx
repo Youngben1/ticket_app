@@ -1,14 +1,13 @@
-import React from 'react'
 import DeleteBlock from './DeleteBlock'
 import PriorityDisplay from './PriorityDisplay'
 import ProgressDisplay from './ProgressDisplay'
 import StatusDisplay from './StatusDisplay'
 
-const TicketCard = () => {
+const TicketCard = ({ ticket }) => {
   return (
     <div className='flex flex-col p-3 m-2 rounded-md bg-card hover:bg-card-hover shadow-lg '>
         <div className='flex mb-3'>
-        <PriorityDisplay />
+        <PriorityDisplay priority={ticket.priority} />
         <div className='ml-auto'>
         <DeleteBlock />
         </div>

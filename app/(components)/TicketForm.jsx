@@ -18,21 +18,20 @@ const TicketForm = () => {
         }));
     }
 
-        const handleSubmit = async (e) => {
-            e.preventDefault();
-            const res = await fetch("/api/Tickets", {
-                method: "POST",
-                body: JSON.stringify({formData}),
-                "content-type": "application/json"
-            })
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const res = await fetch("/api/Tickets", {
+            method: "POST",
+            body: JSON.stringify({formData}),
+            "content-type": "application/json"
+        })
 
-            if (!res.ok) {
-                throw new Error("Failed to create ticket.")
-            }
-
-            router.refresh()
-            router.push("/")
+        if(!res.ok) {
+            throw new Error();
         }
+        router.refresh()
+        router.push("/")
+    }
 
     const startingTicketData = {
         title: "",

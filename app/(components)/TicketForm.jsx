@@ -20,13 +20,13 @@ const TicketForm = () => {
 
         const handleSubmit = async (e) => {
             e.preventDefault();
-            const res = await fetch("api/Tickets", {
+            const res = await fetch("/api/Tickets", {
                 method: "POST",
-                BODY: JSON.stringify({formData}),
-                "content-type": "application/json",
+                body: JSON.stringify({formData}),
+                "content-type": "application/json"
             })
 
-            if(!res.ok) {
+            if (!res.ok) {
                 throw new Error("Failed to create ticket.")
             }
 
@@ -47,14 +47,14 @@ const TicketForm = () => {
     const [formData, setFormData] = useState(startingTicketData);
     return (
     <div className="justify-center flex">
-        <form className="flex flex-col gap-3 w-1/2" onClick={handleSubmit} method="post">
+        <form className="flex flex-col gap-3 w-1/2" onSubmit={handleSubmit} method="post">
             <h3>Create your Ticket</h3>
             <label>Title</label>
             <input id="title" name="title" type="text" required={true} value={formData.title} onChange={handleChange} />
             <label>Description</label>
             <textarea id="description" name="description" type="text" required={true} value={formData.description} rows="5" onChange={handleChange} />
             <label>Category</label>
-            <select name="category" type="text" required={true} value={formData.category} onChange={handleChange}>
+            <select name="category" value={formData.category} onChange={handleChange}>
                 <option value="Software wahala">Software Wahala</option>
                 <option value="Hardware wahala">Hardware Wahala</option>
                 <option value="Temperament wahala">Temperament Wahala</option>
@@ -76,12 +76,12 @@ const TicketForm = () => {
             <input id="progress" name="progress" type="range" onChange={handleChange} value={formData.progress} min="0" max="100" />
 
             <label>Status</label>
-            <select name="status" type="text" required={true} value={formData.status} onChange={handleChange}>
+            <select name="status" value={formData.status} onChange={handleChange}>
                 <option value="Not started">Not Started</option>
                 <option value="Started">Started</option>
                 <option value="Pending">Pending</option>
             </select>
-            <input type="submit" className="btn" value="Create Ticket" onClick={handleSubmit} />
+            <input type="submit" className="btn" value="Create Ticket"/>
         </form>
     </div>
   )
